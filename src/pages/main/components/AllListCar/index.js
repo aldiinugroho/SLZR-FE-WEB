@@ -32,6 +32,7 @@ function Index({}) {
           img={i.carImage}
           title={i.carName}
           price={i.carSellPrice}
+          loading={storeCarList.loading}
         />
       ))}
     </div>
@@ -41,7 +42,8 @@ function Index({}) {
 function CellDetail({
   img = "",
   title = "",
-  price = ""
+  price = "",
+  loading = false
 }) {
   return(
     <div style={{
@@ -54,37 +56,43 @@ function CellDetail({
       padding: 5
     }}>
       <div style={{
-        width: "100%",
-        height: "50%",
-        backgroundColor: "gray"
-      }}>
-        <img 
-        alt={img}
-        width={"100%"}
-        height={"100%"}
-        style={{
-          objectFit: "cover"
-        }}
-        src={img} />
-      </div>
-      <div style={{
-        padding: 5,
-        display: "flex",
+        display: loading ? "none" : "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        flex: 1,
-        // width: "100%",
-        backgroundColor: "white",
+        flex: 1
       }}>
         <div style={{
-          fontSize: 15,
-          fontWeight: "bold",
-          ...styleTruncate(2)
-        }}>{title}</div>
+          width: "100%",
+          height: "50%",
+          backgroundColor: "gray"
+        }}>
+          <img 
+          alt={img}
+          width={"100%"}
+          height={"100%"}
+          style={{
+            objectFit: "cover"
+          }}
+          src={img} />
+        </div>
         <div style={{
-          fontSize: 15,
-          ...styleTruncate(1)
-        }}>Rp {rupiahFormat(price)}</div>
+          padding: 5,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          flex: 1,
+          // width: "100%",
+          backgroundColor: "white",
+        }}>
+          <div style={{
+            fontSize: 15,
+            fontWeight: "bold",
+            ...styleTruncate(2)
+          }}>{title}</div>
+          <div style={{
+            fontSize: 15,
+            ...styleTruncate(1)
+          }}>Rp {rupiahFormat(price)}</div>
+        </div>
       </div>
     </div>
   )
