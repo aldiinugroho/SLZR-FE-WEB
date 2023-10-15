@@ -27,6 +27,12 @@ export  const  Routing = [
     element: <Pages.Main />,
     showSideBar: false
   }),
+  new ParentRouting({
+    name: "Main",
+    path: "/car/detail/:carId",
+    element: <Pages.CarDetail />,
+    showSideBar: false
+  }),
 ]
 
 export default Index;

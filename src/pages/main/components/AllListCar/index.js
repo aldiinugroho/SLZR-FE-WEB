@@ -4,6 +4,7 @@ import { useCaseCar } from "../../../../services/usecase";
 import { storeAllListCar } from "./store";
 import { ModelCarList } from "./models/carlist";
 import { rupiahFormat } from "../../../../utils";
+import { useNavigate } from "react-router-dom";
 
 function Index({}) {
   const storeCarList = storeAllListCar((state) => state)
@@ -26,13 +27,18 @@ function Index({}) {
       display: "flex",
       flexWrap: "wrap"
     }}>
-      {storeCarList.data.map((i = new ModelCarList({}),x) => (
+      {storeCarList.loading && (
+        <CellDetail 
+          loading={true}
+        />
+      )}
+      {!storeCarList.loading && storeCarList.data.map((i = new ModelCarList({}),x) => (
         <CellDetail 
           key={x}
+          carId={i.carId}
           img={i.carImage}
           title={i.carName}
           price={i.carSellPrice}
-          loading={storeCarList.loading}
         />
       ))}
     </div>
@@ -40,13 +46,24 @@ function Index({}) {
 }
 
 function CellDetail({
+  carId = "",
   img = "",
   title = "",
   price = "",
   loading = false
 }) {
+  const navigate = useNavigate()
+
+  function goToDetail(carId = "") {
+    if (loading) return
+    navigate(`/car/detail/${carId}`)
+  }
+
   return(
-    <div style={{
+    <div 
+    onClick={() => goToDetail(carId)}
+    style={{
+      cursor: "pointer",
       display: "flex",
       flexDirection: "column",
       borderRadius: 5,
