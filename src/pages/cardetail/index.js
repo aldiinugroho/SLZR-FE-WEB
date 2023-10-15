@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BodyTemplate, Customheader } from "../../components";
 import { useParams } from "react-router-dom";
+import { useCaseCar } from "../../services/usecase";
 
 function Index({
 }) {
@@ -12,7 +13,7 @@ function Index({
 
   async function getDetail(params = "") {
     try {
-      console.log(params);
+      await useCaseCar.Detail(params)
     } catch (error) {
       
     }
