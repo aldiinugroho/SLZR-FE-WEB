@@ -10,7 +10,6 @@ function Index({data = new ModelCarDetail({}), loading = false}) {
   },[data])
 
   function setupdata(params = new ModelCarDetail({})) {
-    console.log(params);
     if (params === null) return
     const mapped = params.carImage.map((i) => new ModelImageDisplayer(i))
     if (mapped.length === 0) return
