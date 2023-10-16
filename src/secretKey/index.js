@@ -1,3 +1,3 @@
 export const secretKey = {
-  "URL": "http://localhost:3022/v1"
+  "URL": "https://sslzr-service-stagging-web.onrender.com/v1"
 }
