@@ -1,4 +1,5 @@
 import * as React from "react";
+import { assetsImages } from "../../assets";
 
 function Index() {
   return(
@@ -9,9 +10,16 @@ function Index() {
       <div style={{
         width: "10rem",
         height: 60,
-        backgroundColor: "pink"
+        // backgroundColor: "pink"
       }}>
-
+        <img 
+          width={"100%"}
+          height={"100%"}
+          style={{
+            objectFit: "cover"
+          }}
+          src={assetsImages.png.imgLzrAutos}
+        />
       </div>
     </div>
   )
