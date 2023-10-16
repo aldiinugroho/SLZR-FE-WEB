@@ -44,11 +44,11 @@ function ComponentBody({}) {
             loading={store.loading}
             data={store.data}
           />
-          {/* <div style={{padding: 2}}></div>
+          <div style={{padding: 2}}></div>
           <DetailDisplayer 
-            loading={true}
+            loading={store.loading}
             data={store.data}
-          /> */}
+          />
         </React.Fragment>
       )}
     </div>

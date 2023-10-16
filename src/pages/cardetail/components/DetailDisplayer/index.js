@@ -4,29 +4,49 @@ import moment from "moment/moment";
 import { ModelCarDetail } from "../../models/cardetail";
 
 function Index({
-  data = new ModelCarDetail({})
+  data = new ModelCarDetail({}),
+  loading = false
 }) {
 
   return(
     <div style={{
       flex: 1
     }}>
-      <CellTitleComponent 
-        text={data.carName}
-      />
-      <div style={{padding: 2}}></div>
-      <CellComponent 
-        text={`Rp ${rupiahFormat(data.carSellPrice)}`}
-      />
-      <div style={{padding: 2}}></div>
-      <CellCombinedComponent 
-        data={data}
-      />
-      <div style={{padding: 2}}></div>
-      <CellComponent 
-        text={data.carDescription}
-        fontSize={15}
-      />
+      {loading === true && (
+        <React.Fragment>
+          <CellTitleComponent 
+            loading={true}
+          />
+          <div style={{padding: 2}}></div>
+          <CellTitleComponent 
+            loading={true}
+          />
+          <div style={{padding: 2}}></div>
+          <CellTitleComponent 
+            loading={true}
+          />
+        </React.Fragment>
+      )}
+      {loading === false && data !== null && (
+        <React.Fragment>
+          <CellTitleComponent 
+            text={data.carName}
+          />
+          <div style={{padding: 2}}></div>
+          <CellComponent 
+            text={`Rp ${rupiahFormat(data.carSellPrice)}`}
+          />
+          <div style={{padding: 2}}></div>
+          <CellCombinedComponent 
+            data={data}
+          />
+          <div style={{padding: 2}}></div>
+          <CellComponent 
+            text={data.carDescription}
+            fontSize={15}
+          />
+        </React.Fragment>
+      )}
     </div>
   )
 }
@@ -102,14 +122,16 @@ function CellComponent({
 }
 
 function CellTitleComponent({
-  text = ""
+  text = "",
+  loading = false
 }) {
   return (
     <div style={{
       backgroundColor: "#f5f5f5",
       padding: 5,
       fontSize: 20,
-      fontWeight: "bold"
+      fontWeight: "bold",
+      height: loading ? "1rem" : null
     }}>
       {text}
     </div>
