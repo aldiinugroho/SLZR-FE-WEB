@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ModelCarDetail, ModelCarImage } from "../../models/cardetail";
 
-function Index({data = new ModelCarImage({})}) {
+function Index({data = new ModelCarDetail({}), loading = false}) {
   const [mainImageDisplay,setmainImageDisplay] = React.useState("")
   const [imageHolder,setimageHolder] = React.useState([])
 
@@ -9,8 +9,10 @@ function Index({data = new ModelCarImage({})}) {
     setupdata(data)
   },[data])
 
-  function setupdata(params = new ModelCarImage({})) {
-    const mapped = params.map((i) => new ModelImageDisplayer(i))
+  function setupdata(params = new ModelCarDetail({})) {
+    console.log(params);
+    if (params === null) return
+    const mapped = params.carImage.map((i) => new ModelImageDisplayer(i))
     if (mapped.length === 0) return
     setmainImageDisplay(mapped[0]?.image)
     setimageHolder(mapped)
@@ -31,6 +33,7 @@ function Index({data = new ModelCarImage({})}) {
         width={"100%"}
         height={"100%"}
         style={{
+          display: loading === true ? "none" : "flex",
           objectFit: "contain"
         }}
         src={mainImageDisplay} />

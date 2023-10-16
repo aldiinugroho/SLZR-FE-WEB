@@ -38,15 +38,17 @@ function ComponentBody({}) {
       padding: 10,
       display: "flex"
     }}>
-      {store.data !== null && (
+      {(
         <React.Fragment>
           <ImageDisplayer 
-            data={store.data.carImage}
-          />
-          <div style={{padding: 2}}></div>
-          <DetailDisplayer 
+            loading={store.loading}
             data={store.data}
           />
+          {/* <div style={{padding: 2}}></div>
+          <DetailDisplayer 
+            loading={true}
+            data={store.data}
+          /> */}
         </React.Fragment>
       )}
     </div>
