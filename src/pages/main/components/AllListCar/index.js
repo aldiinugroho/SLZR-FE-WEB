@@ -3,7 +3,7 @@ import { styleTruncate } from "../../../../style";
 import { useCaseCar } from "../../../../services/usecase";
 import { storeAllListCar } from "./store";
 import { ModelCarList } from "./models/carlist";
-import { rupiahFormat } from "../../../../utils";
+import { rupiahFormat, useScreenWidth } from "../../../../utils";
 import { useNavigate } from "react-router-dom";
 
 function Index({}) {
@@ -23,7 +23,7 @@ function Index({}) {
 
   return(
     <div style={{
-      padding: 10,
+      // padding: 10,
       display: "flex",
       flexWrap: "wrap"
     }}>
@@ -53,11 +53,16 @@ function CellDetail({
   loading = false
 }) {
   const navigate = useNavigate()
+  var widthscreen = useScreenWidth()
 
   function goToDetail(carId = "") {
     if (loading) return
     navigate(`/car/detail/${carId}`)
   }
+
+  React.useEffect(() => {
+    console.log(widthscreen);
+  },[widthscreen])
 
   return(
     <div 
@@ -67,12 +72,15 @@ function CellDetail({
       display: "flex",
       flexDirection: "column",
       borderRadius: 5,
-      width: 180,
+      width: widthscreen < 500 ? (widthscreen/2)-20 : 180,
       height: 200,
       backgroundColor: "#f5f5f5",
-      padding: 5
+      padding: 5,
+      margin: 5
     }}>
       <div style={{
+        width: "100%",
+        height: "100%",
         display: loading ? "none" : "flex",
         flexDirection: "column",
         flex: 1
