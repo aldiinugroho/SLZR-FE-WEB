@@ -1,9 +1,11 @@
 import * as React from "react";
 import { ModelCarDetail, ModelCarImage } from "../../models/cardetail";
+import { useScreenWidth } from "../../../../utils";
 
-function Index({data = new ModelCarDetail({}), loading = false}) {
+function Index({data = new ModelCarDetail({}), loading = false, width = 300}) {
   const [mainImageDisplay,setmainImageDisplay] = React.useState("")
   const [imageHolder,setimageHolder] = React.useState([])
+  var screenwidth = useScreenWidth()
 
   React.useEffect(() => {
     setupdata(data)
@@ -19,13 +21,12 @@ function Index({data = new ModelCarDetail({}), loading = false}) {
 
   return(
     <div style={{
-      width: 300,
-      height: 300,
+      width: "100%",
     }}>
       <div style={{
         backgroundColor: "#f5f5f5",
         width: "100%",
-        height: "100%"
+        height: 300,
       }}>
         <img 
         alt={mainImageDisplay}
@@ -39,8 +40,10 @@ function Index({data = new ModelCarDetail({}), loading = false}) {
       </div>
       <div style={{padding: 2}}></div>
       <div style={{
+        display: "flex",
+        flexWrap: "wrap",
         width: "100%",
-        height: 80,
+        // height: 80,
         backgroundColor: "#f5f5f5",
         overflowX: "auto",
         overflowY: "hidden",
@@ -51,7 +54,6 @@ function Index({data = new ModelCarDetail({}), loading = false}) {
           onClick={() => setmainImageDisplay(i?.image)}
           key={x}
           style={{
-            display: "inline-block",
             marginRight: x+1 === imageHolder.length ? 0 : 4,
             width: 80,
             height: "100%",

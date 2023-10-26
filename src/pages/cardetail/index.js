@@ -6,6 +6,7 @@ import { DetailDisplayer, ImageDisplayer } from "./components";
 import { ModelImageDisplayer } from "./components/ImageDisplayer";
 import { storeDetailCar } from "./store";
 import { ModelDetailDisplayer } from "./components/DetailDisplayer";
+import { useScreenWidth } from "../../utils";
 
 function Index({
 }) {
@@ -36,7 +37,8 @@ function ComponentBody({}) {
   return(
     <div style={{
       padding: 10,
-      display: "flex"
+      display: "flex",
+      flexDirection: "column"
     }}>
       {(
         <React.Fragment>
