@@ -1,5 +1,3 @@
 export const secretKey = {
-  "URL": "https://sslzr-service-production-web.onrender.com/v1"
+  "URL": process.env.REACT_APP_MAIN_URL
 }
-
-// PRODUCTION
