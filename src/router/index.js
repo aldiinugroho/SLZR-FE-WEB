@@ -33,6 +33,12 @@ export  const  Routing = [
     element: <Pages.CarDetail />,
     showSideBar: false
   }),
+  new ParentRouting({
+    name: "Privacy andPolicy",
+    path: "/privacy&policy",
+    element: <Pages.Privacypolicy />,
+    showSideBar: false
+  }),
 ]
 
 export default Index;
